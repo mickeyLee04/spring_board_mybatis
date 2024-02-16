@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Board">
-    <insert id="save" parameterType="board">
+    <insert id="save" parameterType="board" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO board_table (boardWriter, boardPass, boardTitle, boardContents)
         VALUES (#{boardWriter}, #{boardPass}, #{boardTitle}, #{boardContents})
     </insert>
@@ -26,4 +26,11 @@
     <delete id="delete" parameterType="Long">
         DELETE FROM board_table WHERE id=#{id}
     </delete>
+    <insert id="saveFile" parameterType="boardFile">
+        INSERT INTO board_table (originalFileName, storedFileName, boardId)
+        VALUES (#{originalFileName}, #{storedFileName}, #{boardId})
+    </insert>
+    <select id="findFile" parameterType="Long" resultType="boardFile">
+        SELECT * FROM board_file_table WHERE boardId=#{boardId}
+    </select>
 </mapper>
