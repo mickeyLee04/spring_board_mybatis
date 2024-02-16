@@ -19,4 +19,11 @@
         date_format(createdAt, "%Y-%m-%d %H-%i-%s") as createdAt
         FROM board_table WHERE id=#{id}
     </select>
+    <update id="update" parameterType="board">
+        UPDATE board_table set boardTitle=#{boardTitle}, boardContents=#{boardContents}
+        WHERE id=#{id}
+    </update>
+    <delete id="delete" parameterType="Long">
+        DELETE FROM board_table WHERE id=#{id}
+    </delete>
 </mapper>
