@@ -4,8 +4,8 @@
 
 <mapper namespace="Board">
     <insert id="save" parameterType="board" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO board_table (boardWriter, boardPass, boardTitle, boardContents)
-        VALUES (#{boardWriter}, #{boardPass}, #{boardTitle}, #{boardContents})
+        INSERT INTO board_table (boardWriter, boardPass, boardTitle, boardContents, fileAttached)
+        VALUES (#{boardWriter}, #{boardPass}, #{boardTitle}, #{boardContents}, #{fileAttached})
     </insert>
     <select id="findAll" resultType="board">
         SELECT id, boardWriter, boardPass, boardTitle, date_format(createdAt, "%Y-%m-%d") as createdAt, boardHits
@@ -16,7 +16,7 @@
     </update>
     <select id="findById" parameterType="Long" resultType="board">
         SELECT id, boardWriter, boardPass, boardTitle, boardContents, boardHits,
-        date_format(createdAt, "%Y-%m-%d %H-%i-%s") as createdAt
+        date_format(createdAt, "%Y-%m-%d %H-%i-%s") as createdAt, fileAttached
         FROM board_table WHERE id=#{id}
     </select>
     <update id="update" parameterType="board">
