@@ -27,7 +27,7 @@
         DELETE FROM board_table WHERE id=#{id}
     </delete>
     <insert id="saveFile" parameterType="boardFile">
-        INSERT INTO board_table (originalFileName, storedFileName, boardId)
+        INSERT INTO board_file_table (originalFileName, storedFileName, boardId)
         VALUES (#{originalFileName}, #{storedFileName}, #{boardId})
     </insert>
     <select id="findFile" parameterType="Long" resultType="boardFile">
