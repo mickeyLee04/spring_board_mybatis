@@ -14,7 +14,7 @@ public class BoardRepository {
     private final SqlSessionTemplate sql;
 
     public BoardDTO save(BoardDTO boardDTO) {
-        sql.insert("Board.save", boardDTO);
+        sql.insert("Board.save",boardDTO);
         return boardDTO;
     }
 
@@ -42,7 +42,15 @@ public class BoardRepository {
         sql.insert("Board.saveFile", boardFileDTO);
     }
 
-    public List<BoardFileDTO> findFile(Long id) {
-        return sql.selectList("Board.findFile", id);
+    public List<BoardFileDTO> findFile(Long boardId) {
+        return sql.selectList("Board.findFile", boardId);
+    }
+
+    public BoardFileDTO findByFileId(Long fileId) {
+        return sql.selectOne("Board.findByFileId", fileId);
+    }
+
+    public void deleteFile(Long fileId) {
+        sql.delete("Board.deleteFile", fileId);
     }
 }

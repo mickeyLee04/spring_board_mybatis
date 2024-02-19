@@ -33,4 +33,10 @@
     <select id="findFile" parameterType="Long" resultType="boardFile">
         SELECT * FROM board_file_table WHERE boardId=#{boardId}
     </select>
+    <select id="findByFileId" parameterType="Long" resultType="boardFile">
+        SELECT * FROM board_file_table WHERE id=#{fileId}
+    </select>
+    <delete id="deleteFile" parameterType="Long">
+        DELETE FROM board_file_table WHERE id=#{fileId}
+    </delete>
 </mapper>

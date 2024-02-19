@@ -11,6 +11,13 @@
     title: <input type="text" name="boardTitle" th:value="${board.boardTitle}"><br>
     pass: <input type="text" name="boardPass" id="board-pass"><br>
     contents: <textarea name="boardContents" cols="30" rows="10" th:text="${board.boardContents}"></textarea><br>
+
+    <div th:each="imgList, idx : ${boardFileList}" style="margin: 20px;">
+        <label th:text="'Image'+ ${idx.index+1}"></label></br>
+             <img th:src="@{|/upload/${imgList.storedFileName}|}" alt="" width="200" height="200"></br>
+            <input type="checkbox" name="imageDel" th:value="${imgList.id}" /> <span>삭제시 체크</span>
+    </div>
+
     <input type="button" value="수정" onclick="board_update()">
 </form>
 </body>
